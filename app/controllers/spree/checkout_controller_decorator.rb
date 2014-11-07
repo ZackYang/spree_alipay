@@ -107,7 +107,7 @@ Rails.logger.debug "--->before handle_billing_integration"
 
     def aplipay_full_service_url( order, alipay)
       raise ArgumentError, 'require Spree::BillingIntegration::Alipay' unless alipay.is_a? Spree::BillingIntegration::Alipay
-      url = ActiveMerchant::Billing::Integrations::Alipay.service_url+'?'
+      url = ActiveMerchant::Billing::Integrations::Alipay.service_url+'&'
       helper = ActiveMerchant::Billing::Integrations::Alipay::Helper.new(order.number, alipay.preferred_partner)
       using_direct_pay_service = alipay.preferred_using_direct_pay_service
 
