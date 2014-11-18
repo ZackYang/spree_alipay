@@ -15,9 +15,9 @@ module Spree
       retrieve_order(payment_return.order)
 #      Rails.logger.info "payment_return=#{payment_return.inspect}"
       if @order.present?
-        @order.payments.where(:state => ['processing', 'pending', 'checkout']).first.complete!
         @order.state='complete'
         @order.finalize!
+        @order.payments.where(:state => ['processing', 'pending', 'checkout']).first.complete!
         session[:order_id] = nil
         redirect_to completion_route
       else
